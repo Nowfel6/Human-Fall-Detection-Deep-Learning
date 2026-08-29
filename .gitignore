@@ -1,0 +1,8 @@
+.venv/
+.vscode/
+__pycache__/
+Raw_Videos/
+MP_Data_Final/
+picsandvid/
+*.mp4
+*.avi
