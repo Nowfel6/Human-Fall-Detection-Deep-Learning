@@ -28,19 +28,18 @@ def draw_styled_landmarks(image, results):
                              mp_drawing.DrawingSpec(color=(80,44,121), thickness=2, circle_radius=2)
                              ) 
 
-# একদম শুরুতে একটি মেমরি ভেরিয়েবল তৈরি করে নিন
+
 last_known_pose = np.zeros(132) 
 
 def extract_keypoints(results):
-    global last_known_pose # গ্লোবাল মেমরি ব্যবহার করছি
+    global last_known_pose 
     
     if results.pose_landmarks:
-        # যদি মানুষ দেখতে পায়, তবে নতুন ডেটা নেবে এবং মেমরিতে সেভ করে রাখবে
+       
         pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten()
         last_known_pose = pose 
         return pose
     else:
-        # যদি মানুষ হারিয়ে যায় বা মেঝেতে শুয়ে পড়ে, তবে জিরো না বসিয়ে আগের পজিশনটাই কপি করে দেবে!
         return last_known_pose
 
 
